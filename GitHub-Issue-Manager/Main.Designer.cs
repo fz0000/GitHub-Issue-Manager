@@ -31,17 +31,12 @@ namespace GitHub_Issue_Manager
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.新建NToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.打开OToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.保存SToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.打印PToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxToken = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.剪切UToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.复制CToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.粘贴PToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButtonDownload = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.assignees = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.author = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +55,9 @@ namespace GitHub_Issue_Manager
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updatedAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.url = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.toolStripButtonLogin = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLogout = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -70,23 +68,54 @@ namespace GitHub_Issue_Manager
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新建NToolStripButton,
-            this.打开OToolStripButton,
-            this.保存SToolStripButton,
-            this.打印PToolStripButton,
+            this.toolStripLabel1,
+            this.toolStripTextBoxToken,
             this.toolStripSeparator,
-            this.剪切UToolStripButton,
-            this.复制CToolStripButton,
-            this.粘贴PToolStripButton,
+            this.toolStripButtonLogin,
+            this.toolStripButtonLogout,
             this.toolStripSeparator1,
-            this.帮助LToolStripButton});
+            this.ToolStripButtonDownload,
+            this.ToolStripButtonSave});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(784, 31);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(47, 28);
+            this.toolStripLabel1.Text = "Token:";
+            // 
+            // toolStripTextBoxToken
+            // 
+            this.toolStripTextBoxToken.Name = "toolStripTextBoxToken";
+            this.toolStripTextBoxToken.Size = new System.Drawing.Size(300, 31);
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 31);
+            // 
+            // ToolStripButtonDownload
+            // 
+            this.ToolStripButtonDownload.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonDownload.Image")));
+            this.ToolStripButtonDownload.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonDownload.Name = "ToolStripButtonDownload";
+            this.ToolStripButtonDownload.Size = new System.Drawing.Size(60, 28);
+            this.ToolStripButtonDownload.Text = "下载";
+            this.ToolStripButtonDownload.Click += new System.EventHandler(this.ToolStripButtonOpen_Click);
+            // 
+            // ToolStripButtonSave
+            // 
+            this.ToolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonSave.Image")));
+            this.ToolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonSave.Name = "ToolStripButtonSave";
+            this.ToolStripButtonSave.Size = new System.Drawing.Size(60, 28);
+            this.ToolStripButtonSave.Text = "导出";
             // 
             // toolStripContainer1
             // 
@@ -94,99 +123,17 @@ namespace GitHub_Issue_Manager
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.dataGridView1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(784, 410);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+            this.toolStripContainer1.Size = new System.Drawing.Size(784, 441);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
-            // 
-            // 新建NToolStripButton
-            // 
-            this.新建NToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.新建NToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("新建NToolStripButton.Image")));
-            this.新建NToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.新建NToolStripButton.Name = "新建NToolStripButton";
-            this.新建NToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.新建NToolStripButton.Text = "新建(&N)";
-            // 
-            // 打开OToolStripButton
-            // 
-            this.打开OToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.打开OToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("打开OToolStripButton.Image")));
-            this.打开OToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.打开OToolStripButton.Name = "打开OToolStripButton";
-            this.打开OToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.打开OToolStripButton.Text = "打开(&O)";
-            // 
-            // 保存SToolStripButton
-            // 
-            this.保存SToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.保存SToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("保存SToolStripButton.Image")));
-            this.保存SToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.保存SToolStripButton.Name = "保存SToolStripButton";
-            this.保存SToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.保存SToolStripButton.Text = "保存(&S)";
-            // 
-            // 打印PToolStripButton
-            // 
-            this.打印PToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.打印PToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("打印PToolStripButton.Image")));
-            this.打印PToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.打印PToolStripButton.Name = "打印PToolStripButton";
-            this.打印PToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.打印PToolStripButton.Text = "打印(&P)";
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // 剪切UToolStripButton
-            // 
-            this.剪切UToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.剪切UToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("剪切UToolStripButton.Image")));
-            this.剪切UToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.剪切UToolStripButton.Name = "剪切UToolStripButton";
-            this.剪切UToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.剪切UToolStripButton.Text = "剪切(&U)";
-            // 
-            // 复制CToolStripButton
-            // 
-            this.复制CToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.复制CToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("复制CToolStripButton.Image")));
-            this.复制CToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.复制CToolStripButton.Name = "复制CToolStripButton";
-            this.复制CToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.复制CToolStripButton.Text = "复制(&C)";
-            // 
-            // 粘贴PToolStripButton
-            // 
-            this.粘贴PToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.粘贴PToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("粘贴PToolStripButton.Image")));
-            this.粘贴PToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.粘贴PToolStripButton.Name = "粘贴PToolStripButton";
-            this.粘贴PToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.粘贴PToolStripButton.Text = "粘贴(&P)";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // 帮助LToolStripButton
-            // 
-            this.帮助LToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.帮助LToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("帮助LToolStripButton.Image")));
-            this.帮助LToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.帮助LToolStripButton.Name = "帮助LToolStripButton";
-            this.帮助LToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.帮助LToolStripButton.Text = "帮助(&L)";
             // 
             // dataGridView1
             // 
@@ -214,103 +161,144 @@ namespace GitHub_Issue_Manager
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 425);
+            this.dataGridView1.Size = new System.Drawing.Size(784, 410);
             this.dataGridView1.TabIndex = 0;
             // 
             // assignees
             // 
             this.assignees.HeaderText = "assignees";
+            this.assignees.MinimumWidth = 8;
             this.assignees.Name = "assignees";
             // 
             // author
             // 
             this.author.HeaderText = "author";
+            this.author.MinimumWidth = 8;
             this.author.Name = "author";
             // 
             // body
             // 
             this.body.HeaderText = "body";
+            this.body.MinimumWidth = 8;
             this.body.Name = "body";
             // 
             // closed
             // 
             this.closed.HeaderText = "closed";
+            this.closed.MinimumWidth = 8;
             this.closed.Name = "closed";
             // 
             // closedAt
             // 
             this.closedAt.HeaderText = "closedAt";
+            this.closedAt.MinimumWidth = 8;
             this.closedAt.Name = "closedAt";
             // 
             // comments
             // 
             this.comments.HeaderText = "comments";
+            this.comments.MinimumWidth = 8;
             this.comments.Name = "comments";
             // 
             // createdAt
             // 
             this.createdAt.HeaderText = "createdAt";
+            this.createdAt.MinimumWidth = 8;
             this.createdAt.Name = "createdAt";
             // 
             // id
             // 
             this.id.HeaderText = "id";
+            this.id.MinimumWidth = 8;
             this.id.Name = "id";
             // 
             // labels
             // 
             this.labels.HeaderText = "labels";
+            this.labels.MinimumWidth = 8;
             this.labels.Name = "labels";
             // 
             // milestone
             // 
             this.milestone.HeaderText = "milestone";
+            this.milestone.MinimumWidth = 8;
             this.milestone.Name = "milestone";
             // 
             // number
             // 
             this.number.HeaderText = "number";
+            this.number.MinimumWidth = 8;
             this.number.Name = "number";
             // 
             // projectCards
             // 
             this.projectCards.HeaderText = "projectCards";
+            this.projectCards.MinimumWidth = 8;
             this.projectCards.Name = "projectCards";
             // 
             // reactionGroups
             // 
             this.reactionGroups.HeaderText = "reactionGroups";
+            this.reactionGroups.MinimumWidth = 8;
             this.reactionGroups.Name = "reactionGroups";
             // 
             // state
             // 
             this.state.HeaderText = "state";
+            this.state.MinimumWidth = 8;
             this.state.Name = "state";
             // 
             // title
             // 
             this.title.HeaderText = "title";
+            this.title.MinimumWidth = 8;
             this.title.Name = "title";
             // 
             // updatedAt
             // 
             this.updatedAt.HeaderText = "updatedAt";
+            this.updatedAt.MinimumWidth = 8;
             this.updatedAt.Name = "updatedAt";
             // 
             // url
             // 
             this.url.HeaderText = "url";
+            this.url.MinimumWidth = 8;
             this.url.Name = "url";
+            // 
+            // toolStripButtonLogin
+            // 
+            this.toolStripButtonLogin.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLogin.Image")));
+            this.toolStripButtonLogin.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLogin.Name = "toolStripButtonLogin";
+            this.toolStripButtonLogin.Size = new System.Drawing.Size(68, 28);
+            this.toolStripButtonLogin.Text = "Login";
+            // 
+            // toolStripButtonLogout
+            // 
+            this.toolStripButtonLogout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLogout.Image")));
+            this.toolStripButtonLogout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLogout.Name = "toolStripButtonLogout";
+            this.toolStripButtonLogout.Size = new System.Drawing.Size(77, 28);
+            this.toolStripButtonLogout.Text = "Logout";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.toolStripContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "GitHub Issue Manager";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -326,16 +314,9 @@ namespace GitHub_Issue_Manager
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton 新建NToolStripButton;
-        private System.Windows.Forms.ToolStripButton 打开OToolStripButton;
-        private System.Windows.Forms.ToolStripButton 保存SToolStripButton;
-        private System.Windows.Forms.ToolStripButton 打印PToolStripButton;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonDownload;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton 剪切UToolStripButton;
-        private System.Windows.Forms.ToolStripButton 复制CToolStripButton;
-        private System.Windows.Forms.ToolStripButton 粘贴PToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton 帮助LToolStripButton;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn assignees;
@@ -355,6 +336,11 @@ namespace GitHub_Issue_Manager
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
         private System.Windows.Forms.DataGridViewTextBoxColumn updatedAt;
         private System.Windows.Forms.DataGridViewLinkColumn url;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxToken;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLogin;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLogout;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
